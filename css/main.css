@@ -1,19 +1,35 @@
+/* Base / Contrast */
+:root{
+  --bg: #f9fafb;
+  --text: #111111;
+  --muted: #4b5563;
+  --brand: #0b5fff;      /* meets AA on white */
+  --brand-dark: #094bcc;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --kbd: #1f2937;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: 'Roboto', Helvetica, sans-serif;
-  background-color: grey;
+  font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
   margin: 0;
-  padding: 0;
+  line-height: 1.6;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Stick No Bills', 'Roboto', Helvetica, sans-serif;
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Stick No Bills', 'Roboto', Helvetica, Arial, sans-serif;
+  line-height: 1.25;
+  margin: 0 0 .5rem 0;
 }
 
+/* Layout */
 .container {
   max-width: 1080px;
   margin: 0 auto;
@@ -22,8 +38,40 @@ h6 {
 
 img {
   width: 100%;
+  height: auto;
 }
 
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--brand);
+  color: #fff;
+  padding: .75rem 1rem;
+  border-radius: .375rem;
+  z-index: 1000;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Header / Nav */
+.site-header {
+  padding: 1rem 0;
+}
+.site-title {
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  margin-bottom: .5rem;
+}
+.main-nav nav {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+}
 .main-nav ul {
   list-style: none;
   display: flex;
@@ -31,41 +79,88 @@ img {
   margin: 0;
   padding: 0;
 }
-
-.main-nav ul li {
-  flex: 1;
-  text-align: center;
-}
-
-.main-nav ul li a {
+.main-nav li { flex: 1 1 auto; text-align: center; }
+.main-nav a {
   display: block;
-  color: inherit;
-  text-decoration: none;
-  font-size: 1.25rem;
+  padding: .75rem 1rem;
+  color: var(--brand-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.main-nav a:focus-visible,
+.main-nav a:hover {
+  outline: none;
+  background: #eef2ff;
 }
 
+/* Banner */
+.banner {
+  margin: 1rem 0 2rem;
+  border-radius: .5rem;
+}
+
+/* Main */
+.main-content section,
+.owner,
+.contact-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Forms */
+form label {
+  font-weight: 600;
+  display: block;
+  margin: .75rem 0 .25rem;
+}
 form input,
 form textarea {
   display: block;
   width: 100%;
-  margin-bottom: 1rem;
-  padding: .5rem 1rem;
+  margin-bottom: .75rem;
+  padding: .6rem .8rem;
+  border: 1px solid var(--border);
+  border-radius: .375rem;
+  background: #fff;
+  color: var(--text);
 }
-
+form input:focus-visible,
+form textarea:focus-visible {
+  outline: 3px solid #84b5ff; /* visible focus */
+  outline-offset: 1px;
+}
 form textarea {
   min-height: 150px;
-  max-height: 150px;
-  height: 150px;
-  resize: none;
+  resize: vertical;
 }
-
 form button {
-  background: none;
-  border: 2px solid black;
-  padding: 1rem;
-  text-transform: uppercase;
+  background: var(--brand);
+  color: #fff;
+  border: 0;
+  padding: .8rem 1.1rem;
+  border-radius: .5rem;
+  text-transform: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+form button:hover,
+form button:focus-visible {
+  background: var(--brand-dark);
 }
 
+/* Footer */
 .site-footer {
   padding: 2rem 0;
+  color: var(--muted);
+  font-size: .95rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Extra focus visibility */
+a:focus-visible, button:focus-visible {
+  outline: 3px solid #84b5ff;
+  outline-offset: 2px;
 }
